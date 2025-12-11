@@ -1,54 +1,36 @@
-// Arquivo: /componentes/CartContext.js
+// Arquivo: /componentes/CartContext.js - SOMENTE A FUNÇÃO addToCart MUDOU
 
-'use client'; 
+// ... (restante das importações e definição do createContext)
 
-import { createContext, useState, useContext } from 'react';
-
-const CartContext = createContext();
-
+// 2. Provedor do Contexto
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]); //
+  const [cart, setCart] = useState([]); 
 
-  const addToCart = (product) => {
+  // NOVO addToCart: Agora aceita 'product' (que inclui size/color) e a 'qty'
+  const addToCart = (product, qty = 1) => {
     setCart((prevCart) => {
-      const existingItem = prevCart.find(item => item.name === product.name);
+      // Cria uma chave única para o item (Nome + Cor + Tamanho)
+      const uniqueKey = `${product.name}-${product.color}-${product.size}`;
+      
+      // Procura o item existente com essa chave única
+      const existingItem = prevCart.find(item => 
+        `${item.name}-${item.color}-${item.size}` === uniqueKey
+      );
 
       if (existingItem) {
         return prevCart.map(item => 
-          item.name === product.name
-            ? { ...item, quantity: item.quantity + 1 }
+          item === existingItem
+            ? { ...item, quantity: item.quantity + qty }
             : item
         );
       } else {
-        return [...prevCart, { ...product, quantity: 1 }];
+        // Se for um item novo, adiciona o produto com a variação e a quantidade inicial
+        return [...prevCart, { ...product, quantity: qty }];
       }
     });
   };
 
-  const removeFromCart = (productName) => {
-    setCart(prevCart => prevCart.filter(item => item.name !== productName));
-  };
-  
-  const decreaseQuantity = (productName) => {
-      setCart(prevCart => {
-          return prevCart.map(item => {
-              if (item.name === productName && item.quantity > 1) {
-                  return { ...item, quantity: item.quantity - 1 };
-              }
-              return item;
-          });
-      });
-  };
-  
-  const clearCart = () => setCart([]);
-
-  return (
-    <CartContext.Provider value={{ cart, addToCart, setCart, removeFromCart, decreaseQuantity, clearCart }}>
-      {children}
-    </CartContext.Provider>
-  );
+  // ... (o restante das funções removeFromCart, decreaseQuantity, etc. permanecem as mesmas)
 }
 
-export function useCart() {
-  return useContext(CartContext);
-}
+// ... (o restante do código)
