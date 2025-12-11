@@ -2,7 +2,8 @@
 
 'use client'; 
 
-import { useCart } from '../../componentes/CartContext'; 
+// ✅ CORREÇÃO: Usando o alias padrão da raiz
+import { useCart } from '@/componentes/CartContext'; 
 import Link from 'next/link';
 import { useMemo } from 'react';
 
