@@ -4,14 +4,11 @@
 
 import { createContext, useState, useContext } from 'react';
 
-// 1. Criação do Contexto
 const CartContext = createContext();
 
-// 2. Provedor do Contexto
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]); 
+  const [cart, setCart] = useState([]); //
 
-  // Adiciona item (ou aumenta a quantidade)
   const addToCart = (product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find(item => item.name === product.name);
@@ -28,12 +25,10 @@ export function CartProvider({ children }) {
     });
   };
 
-  // Remove um item completamente
   const removeFromCart = (productName) => {
     setCart(prevCart => prevCart.filter(item => item.name !== productName));
   };
   
-  // Diminui a quantidade (se for 1, mantém 1, ou você pode ajustar para remover)
   const decreaseQuantity = (productName) => {
       setCart(prevCart => {
           return prevCart.map(item => {
@@ -54,7 +49,6 @@ export function CartProvider({ children }) {
   );
 }
 
-// 3. Hook customizado para uso
 export function useCart() {
   return useContext(CartContext);
 }
