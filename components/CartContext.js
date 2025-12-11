@@ -1,8 +1,11 @@
-// Arquivo: /componentes/CartContext.js - SOMENTE A FUNÇÃO addToCart MUDOU
+// Arquivo: /componentes/CartContext.js
 
-// ... (restante das importações e definição do createContext)
+'use client'; 
 
-// 2. Provedor do Contexto
+import { createContext, useState, useContext } from 'react';
+
+const CartContext = createContext();
+
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]); 
 
@@ -10,11 +13,12 @@ export function CartProvider({ children }) {
   const addToCart = (product, qty = 1) => {
     setCart((prevCart) => {
       // Cria uma chave única para o item (Nome + Cor + Tamanho)
-      const uniqueKey = `${product.name}-${product.color}-${product.size}`;
+      // Usamos '?' para garantir que não quebre se size/color não estiverem definidos
+      const uniqueKey = `${product.name}-${product.color || ''}-${product.size || ''}`;
       
       // Procura o item existente com essa chave única
       const existingItem = prevCart.find(item => 
-        `${item.name}-${item.color}-${item.size}` === uniqueKey
+        `${item.name}-${item.color || ''}-${item.size || ''}` === uniqueKey
       );
 
       if (existingItem) {
@@ -30,7 +34,33 @@ export function CartProvider({ children }) {
     });
   };
 
-  // ... (o restante das funções removeFromCart, decreaseQuantity, etc. permanecem as mesmas)
+  const removeFromCart = (uniqueItemKey) => {
+    // A remoção agora usa a chave única (name-color-size)
+    setCart(prevCart => prevCart.filter(item => 
+        `${item.name}-${item.color || ''}-${item.size || ''}` !== uniqueItemKey
+    ));
+  };
+  
+  const decreaseQuantity = (uniqueItemKey) => {
+      setCart(prevCart => {
+          return prevCart.map(item => {
+              if (`${item.name}-${item.color || ''}-${item.size || ''}` === uniqueItemKey && item.quantity > 1) {
+                  return { ...item, quantity: item.quantity - 1 };
+              }
+              return item;
+          });
+      });
+  };
+  
+  const clearCart = () => setCart([]);
+
+  return (
+    <CartContext.Provider value={{ cart, addToCart, setCart, removeFromCart, decreaseQuantity, clearCart }}>
+      {children}
+    </CartContext.Provider>
+  );
 }
 
-// ... (o restante do código)
+export function useCart() {
+  return useContext(CartContext);
+}
