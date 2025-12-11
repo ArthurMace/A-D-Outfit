@@ -3,8 +3,8 @@
 'use client'; 
 
 import Link from 'next/link';
-// IMPORTAÇÃO CORRETA: O CartContext está na mesma pasta.
-import { useCart } from './CartContext'; 
+// ✅ CORREÇÃO: Importação usando o Alias
+import { useCart } from '@/componentes/CartContext'; 
 
 export default function Header() {
   const { cart } = useCart();
