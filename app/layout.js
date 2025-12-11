@@ -1,9 +1,7 @@
 // Arquivo: /aplicativo/layout.js
 
 import "./globals.css";
-
-// ❌ ERRO COMUM: Estar usando '../components/' (em inglês)
-// ✅ CORRETO: Usar '../componentes/' (em português, plural)
+// IMPORTAÇÕES CORRIGIDAS: Usa '../componentes/' para sair de 'aplicativo' e entrar em 'componentes'
 import Header from "../componentes/Header"; 
 import { CartProvider } from "../componentes/CartContext"; 
 
