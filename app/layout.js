@@ -1,11 +1,15 @@
 // Arquivo: /aplicativo/layout.js
 
 import "./globals.css";
-// ✅ CORREÇÃO: Usando o Alias para caminhos absolutos
-import Header from "@/componentes/Header"; 
-import { CartProvider } from "@/componentes/CartContext"; 
+// ✅ CORREÇÃO DEFINITIVA: Caminho relativo que sobe um nível (..)
+import Header from "../componentes/Header"; 
+import { CartProvider } from "../componentes/CartContext"; 
 
-// ... (restante do código permanece igual)
+export const metadata = {
+  title: "Loja",
+  description: "Portfólio de roupas com envio para WhatsApp"
+};
+// ... (o restante do código)
 export const metadata = {
   title: "Loja",
   description: "Portfólio de roupas com envio para WhatsApp"
