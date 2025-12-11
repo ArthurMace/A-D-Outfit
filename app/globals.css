@@ -1,14 +1,18 @@
 /* Arquivo: /globals.css - NOVO VISUAL CLEAN/MINIMALISTA */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * { 
     margin:0; 
     padding:0; 
     box-sizing:border-box; 
 }
 body { 
-    font-family: 'Inter', sans-serif; /* Se quiser, instale a fonte Inter */
-    background-color: #F8F8F8; /* Fundo branco/muito claro */
-    color: #1A1A1A; /* Texto preto para alto contraste */
+    font-family: sans-serif; 
+    background-color: #F8F8F8; /* Fundo muito claro */
+    color: #1A1A1A; /* Texto preto */
 }
 a { 
     color:inherit; 
@@ -18,14 +22,14 @@ a {
 /* Container de Produtos */
 .grid { 
     display:grid; 
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Card um pouco maior para respiro */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
     gap: 25px; 
     padding: 20px 0;
 }
 
 /* Card de Produto */
 .card { 
-    background: white; /* Fundo do card branco */
+    background: white; 
     padding: 16px; 
     border-radius: 6px; 
     text-align:center; 
@@ -35,7 +39,7 @@ a {
 }
 .card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra mais evidente no hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
 }
 
 .card img { 
@@ -52,21 +56,21 @@ a {
     display:inline-block; 
     padding: 10px 18px; 
     background: #1A1A1A; /* Preto sólido */
-    color: white; /* Texto branco no botão */
+    color: white; 
     font-weight: 500;
     border-radius: 4px; 
-    transition: background 0.2s, transform 0.1s;
+    transition: background 0.2s;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    cursor: pointer;
 }
 .btn:hover { 
     background: #4A4A4A; /* Cinza escuro no hover */
-    transform: none; /* Mantém o design estático, mais clean */
 }
 
-/* Classes para seletores de variação (do ProductCard) */
-.bg-zinc-800 {
+/* Classes para inputs/seletores (para manter o visual clean) */
+.bg-zinc-800 { 
     background-color: white;
-    border: 1px solid #E5E5E5;
+    border: 1px solid #CFCFCF;
     color: #1A1A1A;
 }
