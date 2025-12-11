@@ -1,10 +1,11 @@
 // Arquivo: /aplicativo/layout.js
 
 import "./globals.css";
-// ✅ CORREÇÃO: Importação usando o Alias
+// ✅ CORREÇÃO: Usando o Alias para caminhos absolutos
 import Header from "@/componentes/Header"; 
 import { CartProvider } from "@/componentes/CartContext"; 
 
+// ... (restante do código permanece igual)
 export const metadata = {
   title: "Loja",
   description: "Portfólio de roupas com envio para WhatsApp"
