@@ -2,16 +2,18 @@
 
 'use client'; 
 
-import { useCart } from '@/componentes/CartContext'; 
+// ✅ CORREÇÃO: Importação local
+import { useCart } from './CartContext'; 
 import { useState } from 'react';
 
 // Variações que o cliente pode escolher:
 const availableSizes = ['P', 'M', 'G', 'GG'];
-const availableColors = ['Preto', 'Branco', 'Cinza']; 
+const availableColors = ['Preto', 'Branco', 'Cinza', 'Azul']; 
 
 export default function ProductCard({ name, price, img, id }){
   const { addToCart } = useCart(); 
   
+  // Estados para rastrear as escolhas do usuário
   const [selectedSize, setSelectedSize] = useState(availableSizes[0]);
   const [selectedColor, setSelectedColor] = useState(availableColors[0]);
   const [quantity, setQuantity] = useState(1);
@@ -21,13 +23,13 @@ export default function ProductCard({ name, price, img, id }){
       name, 
       price: parseFloat(price.replace(',', '.')), 
       img,
+      // Incluímos as variações no objeto do produto
       size: selectedSize, 
       color: selectedColor,
   };
 
   const handleAddToCart = () => {
-    // Passa a variação e a quantidade para o Context
-    addToCart(product, quantity); 
+    addToCart(product, quantity);
     alert(`${quantity}x ${name} (${selectedColor}, ${selectedSize}) adicionado(s) ao carrinho!`); 
     setQuantity(1); // Reseta a quantidade após adicionar
   };
@@ -39,13 +41,14 @@ export default function ProductCard({ name, price, img, id }){
       <p className="opacity-80">R$ {price}</p>
       
       {/* SELETORES DE VARIAÇÃO */}
-      <div className="flex flex-col gap-2 mt-3">
+      <div className="flex flex-col gap-2 mt-3 text-left">
         {/* Seletor de Tamanho */}
-        <label className="text-sm text-left opacity-80">Tamanho:</label>
+        <label className="text-xs opacity-70">Tamanho:</label>
         <select
           value={selectedSize}
           onChange={(e) => setSelectedSize(e.target.value)}
-          className="bg-zinc-800 text-white p-2 rounded-lg text-sm"
+          // Classe atualizada para o visual clean (ver globals.css)
+          className="bg-zinc-800 text-sm p-2 rounded-sm" 
         >
           {availableSizes.map(size => (
             <option key={size} value={size}>{size}</option>
@@ -53,11 +56,12 @@ export default function ProductCard({ name, price, img, id }){
         </select>
 
         {/* Seletor de Cor */}
-        <label className="text-sm text-left opacity-80 mt-2">Cor:</label>
+        <label className="text-xs opacity-70 mt-2">Cor:</label>
         <select
           value={selectedColor}
           onChange={(e) => setSelectedColor(e.target.value)}
-          className="bg-zinc-800 text-white p-2 rounded-lg text-sm"
+           // Classe atualizada para o visual clean (ver globals.css)
+          className="bg-zinc-800 text-sm p-2 rounded-sm"
         >
           {availableColors.map(color => (
             <option key={color} value={color}>{color}</option>
@@ -65,20 +69,21 @@ export default function ProductCard({ name, price, img, id }){
         </select>
         
         {/* Seletor de Quantidade */}
-        <label className="text-sm text-left opacity-80 mt-2">Quantidade:</label>
+        <label className="text-xs opacity-70 mt-2">Quantidade:</label>
         <input
           type="number"
           min="1"
           value={quantity}
           onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value)))}
-          className="bg-zinc-800 text-white p-2 rounded-lg text-sm text-center"
+          // Classe atualizada para o visual clean (ver globals.css)
+          className="bg-zinc-800 text-sm p-2 rounded-sm text-center"
         />
       </div>
 
       <button 
         onClick={handleAddToCart}
         className="btn" 
-        style={{ width: '100%', border: 'none', cursor: 'pointer' }}
+        style={{ width: '100%' }}
       >
         Adicionar ao Carrinho
       </button>
