@@ -13,7 +13,6 @@ export function CartProvider({ children }) {
   const addToCart = (product, qty = 1) => {
     setCart((prevCart) => {
       // Cria uma chave única para o item (Nome + Cor + Tamanho)
-      // Usamos '?' para garantir que não quebre se size/color não estiverem definidos
       const uniqueKey = `${product.name}-${product.color || ''}-${product.size || ''}`;
       
       // Procura o item existente com essa chave única
@@ -28,14 +27,12 @@ export function CartProvider({ children }) {
             : item
         );
       } else {
-        // Se for um item novo, adiciona o produto com a variação e a quantidade inicial
         return [...prevCart, { ...product, quantity: qty }];
       }
     });
   };
 
   const removeFromCart = (uniqueItemKey) => {
-    // A remoção agora usa a chave única (name-color-size)
     setCart(prevCart => prevCart.filter(item => 
         `${item.name}-${item.color || ''}-${item.size || ''}` !== uniqueItemKey
     ));
