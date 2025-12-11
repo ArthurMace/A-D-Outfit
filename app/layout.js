@@ -1,9 +1,9 @@
 // Arquivo: /aplicativo/layout.js
 
 import "./globals.css";
-// IMPORTAÇÕES CORRIGIDAS: Usa '../componentes/' para sair de 'aplicativo' e entrar em 'componentes'
-import Header from "../componentes/Header"; 
-import { CartProvider } from "../componentes/CartContext"; 
+// ✅ CORREÇÃO: Importação usando o Alias
+import Header from "@/componentes/Header"; 
+import { CartProvider } from "@/componentes/CartContext"; 
 
 export const metadata = {
   title: "Loja",
