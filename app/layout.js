@@ -13,9 +13,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-br">
+   <html lang="pt-br">
       <CartProvider>
-        <body className="bg-zinc-950 text-white max-w-5xl mx-auto p-6 font-sans">
+        <body className="bg-white text-black max-w-5xl mx-auto p-6 font-sans"> 
           
           <Header /> 
           
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
           
-          <footer className="mt-10 py-4 text-center border-t border-zinc-700 opacity-60 text-sm">
+          <footer className="mt-10 py-4 text-center border-t border-gray-300 opacity-80 text-sm">
             &copy; {new Date().getFullYear()} Loja. Todos os direitos reservados.
           </footer>
           
