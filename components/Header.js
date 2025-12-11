@@ -3,8 +3,8 @@
 'use client'; 
 
 import Link from 'next/link';
-// ✅ CORREÇÃO: Importação local
-import { useCart } from './CartContext'; 
+// ✅ CORREÇÃO: Usando o alias padrão da raiz
+import { useCart } from '@/componentes/CartContext'; 
 
 export default function Header() {
   const { cart } = useCart();
@@ -20,6 +20,7 @@ export default function Header() {
   ];
 
   return (
+    // CLASSE ATUALIZADA PARA VISUAL CLEAN
     <header className="mb-10 flex flex-col sm:flex-row justify-between items-center py-4 border-b border-gray-300">
       <h1 className="text-3xl font-bold mb-4 sm:mb-0">
         <Link href="/aplicativo" className="hover:text-gray-600 transition-colors">Loja</Link>
