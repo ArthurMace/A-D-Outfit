@@ -1,6 +1,6 @@
-// Crie o arquivo: /app/context/CartContext.js
+// Arquivo: /componentes/CartContext.js
 
-'use client'; // Necessário pois usaremos hooks do React
+'use client'; 
 
 import { createContext, useState, useContext } from 'react';
 
@@ -9,38 +9,52 @@ const CartContext = createContext();
 
 // 2. Provedor do Contexto
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]); // O estado que guardará os produtos no carrinho
+  const [cart, setCart] = useState([]); 
 
-  // Função para adicionar um item ao carrinho
+  // Adiciona item (ou aumenta a quantidade)
   const addToCart = (product) => {
     setCart((prevCart) => {
-      // Verifica se o item já está no carrinho
       const existingItem = prevCart.find(item => item.name === product.name);
 
       if (existingItem) {
-        // Se já existe, aumenta a quantidade
         return prevCart.map(item => 
           item.name === product.name
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
-        // Se não existe, adiciona com quantidade 1
         return [...prevCart, { ...product, quantity: 1 }];
       }
     });
   };
 
-  // Funções adicionais (remover, diminuir quantidade, etc.) podem ser adicionadas aqui
+  // Remove um item completamente
+  const removeFromCart = (productName) => {
+    setCart(prevCart => prevCart.filter(item => item.name !== productName));
+  };
+  
+  // Diminui a quantidade (se for 1, mantém 1, ou você pode ajustar para remover)
+  const decreaseQuantity = (productName) => {
+      setCart(prevCart => {
+          return prevCart.map(item => {
+              if (item.name === productName && item.quantity > 1) {
+                  return { ...item, quantity: item.quantity - 1 };
+              }
+              return item;
+          });
+      });
+  };
+  
+  const clearCart = () => setCart([]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, setCart }}>
+    <CartContext.Provider value={{ cart, addToCart, setCart, removeFromCart, decreaseQuantity, clearCart }}>
       {children}
     </CartContext.Provider>
   );
 }
 
-// 3. Hook customizado para usar o Contexto em outros componentes
+// 3. Hook customizado para uso
 export function useCart() {
   return useContext(CartContext);
 }
