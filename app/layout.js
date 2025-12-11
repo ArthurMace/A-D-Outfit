@@ -9,17 +9,13 @@ export const metadata = {
   title: "Loja",
   description: "Portfólio de roupas com envio para WhatsApp"
 };
-// ... (o restante do código)
-export const metadata = {
-  title: "Loja",
-  description: "Portfólio de roupas com envio para WhatsApp"
-};
 
 export default function RootLayout({ children }) {
   return (
-   <html lang="pt-br">
+    <html lang="pt-br">
       <CartProvider>
-        <body className="bg-white text-black max-w-5xl mx-auto p-6 font-sans"> 
+        {/* CLASSE BODY PARA VISUAL CLEAN */}
+        <body className="bg-white text-black max-w-5xl mx-auto p-6 font-sans">
           
           <Header /> 
           
@@ -27,6 +23,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
           
+          {/* CLASSE FOOTER PARA VISUAL CLEAN */}
           <footer className="mt-10 py-4 text-center border-t border-gray-300 opacity-80 text-sm">
             &copy; {new Date().getFullYear()} Loja. Todos os direitos reservados.
           </footer>
