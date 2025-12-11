@@ -1,13 +1,41 @@
-export default function ProductCard({ name, price, img }){
-  const msg = encodeURIComponent(`Olá! Gostaria de comprar:\nProduto: ${name}\nPreço: R$ ${price}`);
-  const link = `https://wa.me/5571982189690?text=${msg}`;
+// Arquivo: /componentes/ProductCard.js
+
+'use client'; // Necessário para usar hooks como useCart
+
+import { useCart } from './CartContext'; // Importamos o hook
+
+// Desestruturamos as props para capturar todos os dados do produto
+export default function ProductCard({ name, price, img, id }){ 
+  const { addToCart } = useCart(); // Pegamos a função de adicionar
+
+  // Criamos o objeto 'product' que será adicionado ao carrinho
+  const product = {
+      id: id || name, // Idealmente use um ID único
+      name, 
+      price: parseFloat(price.replace(',', '.')), // Converte o preço para número
+      img 
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    alert(`${name} adicionado ao carrinho!`); // Feedback simples
+  };
 
   return (
     <div className="card">
-      <img src={img} alt={name}/>
+      {/* Certifique-se de que a imagem está configurada corretamente para Next.js */}
+      <img src={img} alt={name}/> 
       <h3 className="mt-2 text-lg font-bold">{name}</h3>
       <p className="opacity-80">R$ {price}</p>
-      <a className="btn" href={link} target="_blank">Comprar no WhatsApp</a>
+      
+      {/* Botão que agora adiciona ao carrinho */}
+      <button 
+        onClick={handleAddToCart}
+        className="btn" 
+        style={{ width: '100%', border: 'none', cursor: 'pointer' }} // Ajustes de estilo para botão
+      >
+        Adicionar ao Carrinho
+      </button>
     </div>
   );
 }
