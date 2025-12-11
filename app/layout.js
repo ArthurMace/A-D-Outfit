@@ -1,9 +1,9 @@
 // Arquivo: /aplicativo/layout.js
 
 import "./globals.css";
-// ✅ CORREÇÃO DEFINITIVA: Caminho relativo que sobe um nível (..)
-import Header from "../componentes/Header"; 
-import { CartProvider } from "../componentes/CartContext"; 
+// ✅ CORREÇÃO: Usando o alias padrão da raiz
+import Header from "@/componentes/Header"; 
+import { CartProvider } from "@/componentes/CartContext"; 
 
 export const metadata = {
   title: "Loja",
