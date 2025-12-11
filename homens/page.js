@@ -1,1 +1,0 @@
-export default function Page(){return(<main><h1>Homens</h1></main>);}
