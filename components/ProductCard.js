@@ -1,8 +1,10 @@
 // Arquivo: /componentes/ProductCard.js
 
-'use client'; // Necessário para usar hooks como useCart
+'use client'; 
 
-import { useCart } from './CartContext'; // Importamos o hook
+// ❌ ERRO COMUM: Estar usando '../../componentes/CartContext' ou caminhos longos
+// ✅ CORRETO: Usar './' porque o arquivo está ao lado do outro na pasta 'componentes'
+import { useCart } from './CartContext';
 
 // Desestruturamos as props para capturar todos os dados do produto
 export default function ProductCard({ name, price, img, id }){ 
