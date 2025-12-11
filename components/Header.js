@@ -1,10 +1,12 @@
 // Arquivo: /componentes/Header.js
 
-'use client'; // Necessário para usar o hook useCart e Link do Next.js
+'use client'; 
 
 import Link from 'next/link';
-import { useCart } from './CartContext'; // Importação local
+// ✅ CORRETO: Usar './' porque o arquivo está ao lado do outro na pasta 'componentes'
+import { useCart } from './CartContext'; 
 
+// ... restante do código ...
 export default function Header() {
   const { cart } = useCart(); // Acessa o estado do carrinho
   
