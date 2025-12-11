@@ -1,9 +1,11 @@
 // Arquivo: /aplicativo/layout.js
 
 import "./globals.css";
-// CORREÇÃO: Suba um nível (..) para sair de 'aplicativo' e entre em 'componentes'
+
+// ❌ ERRO COMUM: Estar usando '../components/' (em inglês)
+// ✅ CORRETO: Usar '../componentes/' (em português, plural)
 import Header from "../componentes/Header"; 
-import { CartProvider } from "../componentes/CartContext"; // CORREÇÃO: Mesma lógica
+import { CartProvider } from "../componentes/CartContext"; 
 
 export const metadata = {
   title: "Loja",
