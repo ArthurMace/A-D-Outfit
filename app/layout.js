@@ -1,8 +1,9 @@
-// Atualize o arquivo: /app/layout.js
+// Arquivo: /aplicativo/layout.js
 
 import "./globals.css";
-import Header from "../components/Header";
-import { CartProvider } from "./context/CartContext"; // Importa o provedor
+// CORREÇÃO: Suba um nível (..) para sair de 'aplicativo' e entre em 'componentes'
+import Header from "../componentes/Header"; 
+import { CartProvider } from "../componentes/CartContext"; // CORREÇÃO: Mesma lógica
 
 export const metadata = {
   title: "Loja",
@@ -12,7 +13,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      {/* O CartProvider envolve todo o corpo do site */}
       <CartProvider>
         <body className="bg-zinc-950 text-white max-w-5xl mx-auto p-6 font-sans">
           
