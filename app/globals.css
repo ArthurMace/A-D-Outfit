@@ -1,8 +1,72 @@
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: Arial, sans-serif; }
-a { color:white; text-decoration:none; }
-.grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap:20px; }
-.card { background:#18181b; padding:12px; border-radius:12px; text-align:center; }
-.card img { width:100%; border-radius:10px; }
-.btn { margin-top:10px; display:inline-block; padding:10px 14px; background:#27272a; border-radius:10px; transition:0.2s; }
-.btn:hover { background:#3f3f46; }
+/* Arquivo: /globals.css - NOVO VISUAL CLEAN/MINIMALISTA */
+
+* { 
+    margin:0; 
+    padding:0; 
+    box-sizing:border-box; 
+}
+body { 
+    font-family: 'Inter', sans-serif; /* Se quiser, instale a fonte Inter */
+    background-color: #F8F8F8; /* Fundo branco/muito claro */
+    color: #1A1A1A; /* Texto preto para alto contraste */
+}
+a { 
+    color:inherit; 
+    text-decoration:none; 
+}
+
+/* Container de Produtos */
+.grid { 
+    display:grid; 
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Card um pouco maior para respiro */
+    gap: 25px; 
+    padding: 20px 0;
+}
+
+/* Card de Produto */
+.card { 
+    background: white; /* Fundo do card branco */
+    padding: 16px; 
+    border-radius: 6px; 
+    text-align:center; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border: 1px solid #E5E5E5; /* Borda cinza clara */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra mais evidente no hover */
+}
+
+.card img { 
+    width:100%; 
+    height: 250px; 
+    object-fit: cover;
+    border-radius: 4px; 
+    margin-bottom: 15px;
+}
+
+/* Botão Principal */
+.btn { 
+    margin-top:15px; 
+    display:inline-block; 
+    padding: 10px 18px; 
+    background: #1A1A1A; /* Preto sólido */
+    color: white; /* Texto branco no botão */
+    font-weight: 500;
+    border-radius: 4px; 
+    transition: background 0.2s, transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.btn:hover { 
+    background: #4A4A4A; /* Cinza escuro no hover */
+    transform: none; /* Mantém o design estático, mais clean */
+}
+
+/* Classes para seletores de variação (do ProductCard) */
+.bg-zinc-800 {
+    background-color: white;
+    border: 1px solid #E5E5E5;
+    color: #1A1A1A;
+}
