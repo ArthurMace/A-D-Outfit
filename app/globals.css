@@ -1,6 +1,5 @@
-/* Arquivo: /globals.css - NOVO VISUAL CLEAN/MINIMALISTA */
+/* Arquivo: /globals.css - VISUAL CLEAN/MINIMALISTA */
 
-/* Assumindo que você usa Tailwind, as regras básicas são essenciais */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,8 +11,8 @@
 }
 body { 
     font-family: sans-serif; 
-    background-color: #F8F8F8; 
-    color: #1A1A1A; 
+    background-color: #F8F8F8; /* Fundo muito claro */
+    color: #1A1A1A; /* Texto preto */
 }
 a { 
     color:inherit; 
@@ -34,7 +33,7 @@ a {
     padding: 16px; 
     border-radius: 6px; 
     text-align:center; 
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     border: 1px solid #E5E5E5; 
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -56,7 +55,7 @@ a {
     margin-top:15px; 
     display:inline-block; 
     padding: 10px 18px; 
-    background: #1A1A1A; 
+    background: #1A1A1A; /* Preto sólido */
     color: white; 
     font-weight: 500;
     border-radius: 4px; 
