@@ -1,0 +1,10 @@
+// Arquivo: jsconfig.json (na RAIZ do projeto)
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      // O Next.js reconhecerá '@/nome-da-pasta' como pasta-na-raiz/
+      "@/*": ["*"] 
+    }
+  }
+}
