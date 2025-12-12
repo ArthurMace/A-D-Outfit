@@ -9,7 +9,7 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]); 
 
-  // NOVO addToCart: Agora aceita 'product' (que inclui size/color) e a 'qty'
+  // Adiciona item, agora considerando Cor, Tamanho e Quantidade (qty)
   const addToCart = (product, qty = 1) => {
     setCart((prevCart) => {
       // Cria uma chave única para o item (Nome + Cor + Tamanho)
