@@ -1,7 +1,7 @@
 // Arquivo: /aplicativo/layout.js
 
 import "./globals.css";
-// ✅ CORREÇÃO: Usando o alias padrão da raiz
+// ✅ CORREÇÃO: Usando o alias @/ para a pasta 'componentes'
 import Header from "@/componentes/Header"; 
 import { CartProvider } from "@/componentes/CartContext"; 
 
