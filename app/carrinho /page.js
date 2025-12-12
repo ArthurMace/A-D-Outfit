@@ -2,26 +2,26 @@
 
 'use client'; 
 
-// ✅ CORREÇÃO: Usando o alias padrão da raiz
+// ✅ CORREÇÃO: Usando o alias @/
 import { useCart } from '@/componentes/CartContext'; 
 import Link from 'next/link';
 import { useMemo } from 'react';
 
 // Função para gerar o link do WhatsApp com todas as variações
 function generateWhatsAppLink(cart, total) {
-  // SUBSTITUA COM SEU NÚMERO
+  // 🚨 ATENÇÃO: SUBSTITUA COM SEU NÚMERO DE TELEFONE (com código do país e DDD, sem símbolos)
   const phoneNumber = '5571999999999'; 
   let message = 'Olá! Gostaria de fazer o seguinte pedido:\n\n';
 
   cart.forEach(item => {
-    const priceFormatted = item.price.toFixed(2).replace('.', ','); 
+    const priceFormatted = (item.price * item.quantity).toFixed(2).replace('.', ','); 
     
     // Inclui Cor e Tamanho na mensagem
     const variations = [];
     if (item.color) variations.push(`Cor: ${item.color}`);
     if (item.size) variations.push(`Tamanho: ${item.size}`);
     
-    message += `- ${item.name} (${variations.join(', ')}) | Qtd: ${item.quantity} | Unitário: R$ ${priceFormatted}\n`;
+    message += `- ${item.name} (${variations.join(', ')}) | Qtd: ${item.quantity} | Total: R$ ${priceFormatted}\n`;
   });
 
   const totalFormatted = total.toFixed(2).replace('.', ',');
