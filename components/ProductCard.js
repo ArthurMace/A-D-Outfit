@@ -2,10 +2,11 @@
 
 'use client'; 
 
-// ✅ CORREÇÃO: Usando o alias padrão da raiz
+// ✅ CORREÇÃO: Usando o alias @/
 import { useCart } from '@/componentes/CartContext'; 
 import { useState } from 'react';
 
+// Variações de exemplo
 const availableSizes = ['P', 'M', 'G', 'GG'];
 const availableColors = ['Preto', 'Branco', 'Cinza', 'Azul']; 
 
@@ -21,6 +22,7 @@ export default function ProductCard({ name, price, img, id }){
       name, 
       price: parseFloat(price.replace(',', '.')), 
       img,
+      // Passa as variações selecionadas
       size: selectedSize, 
       color: selectedColor,
   };
@@ -28,7 +30,7 @@ export default function ProductCard({ name, price, img, id }){
   const handleAddToCart = () => {
     addToCart(product, quantity);
     alert(`${quantity}x ${name} (${selectedColor}, ${selectedSize}) adicionado(s) ao carrinho!`); 
-    setQuantity(1); 
+    setQuantity(1); // Reseta a quantidade
   };
 
   return (
@@ -39,6 +41,7 @@ export default function ProductCard({ name, price, img, id }){
       
       {/* SELETORES DE VARIAÇÃO */}
       <div className="flex flex-col gap-2 mt-3 text-left">
+        {/* Seletor de Tamanho */}
         <label className="text-xs opacity-70">Tamanho:</label>
         <select
           value={selectedSize}
@@ -50,6 +53,7 @@ export default function ProductCard({ name, price, img, id }){
           ))}
         </select>
 
+        {/* Seletor de Cor */}
         <label className="text-xs opacity-70 mt-2">Cor:</label>
         <select
           value={selectedColor}
@@ -61,6 +65,7 @@ export default function ProductCard({ name, price, img, id }){
           ))}
         </select>
         
+        {/* Seletor de Quantidade */}
         <label className="text-xs opacity-70 mt-2">Quantidade:</label>
         <input
           type="number"
